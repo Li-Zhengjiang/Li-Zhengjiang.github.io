@@ -11,8 +11,6 @@ The project report summarizes the main setup, derivations, and results, while th
 
 - Main report (PDF): [Open report](/files/notes/gqm-final-project/scattering-report.pdf)
 - Alternative report file (PDF): [Open supplementary PDF](/files/notes/gqm-final-project/scattering-of-dirac-electron-zhengjiang.pdf)
-- LaTeX source: [Download `.tex`](/files/notes/gqm-final-project/scattering-report.tex)
-- Bibliography: [Download `.bib`](/files/notes/gqm-final-project/scattering-references.bib)
 - Figure: [SG spin-z 1/2 with different phi](/files/notes/gqm-final-project/sg-spin-z-half-different-phi.pdf)
 - Figure: [SG spin-z 1/2 with different theta](/files/notes/gqm-final-project/sg-spin-z-half-different-theta.pdf)
 - Figure: [Spherical spin-z 1/2 with different phi](/files/notes/gqm-final-project/spherical-spin-z-half-different-phi.pdf)
