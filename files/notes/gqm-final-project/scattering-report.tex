@@ -1,0 +1,313 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{authblk}
+\usepackage{setspace}
+\setstretch{1.182}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\graphicspath{ {./figures/} }
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{lineno}
+%\linenumbers %把这个命令注释掉可以删掉每行左边的数字
+\usepackage{lmodern}
+\usepackage{autobreak}%公式自动换行
+\usepackage{booktabs} % 为tabular提供更好看的hline命令
+\usepackage{array}% tabular using m{2cm}, m , vertical alignment
+\usepackage{mathrsfs}%使用花体字 命令\mathscr
+\usepackage{physics}
+\usepackage{slashed}
+\usepackage{xparse}
+\usepackage{amsfonts}
+\usepackage{amsmath,bm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{geometry}%页边距
+\usepackage{pdfpages}
+\usepackage[bookmarks=true,colorlinks=true,citecolor=blue]{hyperref} %超链接
+\hypersetup{linkcolor=[rgb]{0,0,0}, bookmarksopen = true}% 更多设置请查阅: texdoc hyperref
+%%上面这个是用于修改目录颜色的
+\usepackage{float}
+\usepackage[]{tikz}
+\usepackage[]{pgfplots}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{positioning}   % tikz绘图相对位置
+\tikzset{elegant/.style={smooth,thick,samples=50,cyan}}
+\numberwithin{equation}{section}
+\usepackage[inline]{enumitem} % 编号
+\allowdisplaybreaks
+% 设置标题格式
+\usepackage{titlesec}
+\titleformat{\section}{\fontsize{16}{19.2}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\fontsize{14}{16.8}\bfseries}{\thesubsection}{1em}{}
+
+\title{Scattering of Relativistic Dirac Electrons: From Theory to Numerical Models}
+\author{Zhengjiang Li}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	%加入目录
+	\tableofcontents
+	%正文内容
+	%%section代表小标题
+
+
+%\section{Scattering in Single-particle Relativistic Quantum Mechanics}
+
+\section{Review of Basic Knowledge}
+
+In quantum mechanics, we consider scattering in the aspect of a single particle wave function obeying the Schrödinger wave equation:
+\begin{align}
+	\hat{H}\psi(\boldsymbol{r},t)&=i\hbar\partial_t\psi(\boldsymbol{r},t)\label{Schrödinger}\\
+    \hat{H}=\hat{H_0}+\hat{V}&=\frac{\hat{\boldsymbol{P}^2}}{2m}+\hat{V}
+\end{align}
+One can get the time independt Schrödinger equation via seperation of variables:
+\begin{align}
+	\hat{H}\psi(\boldsymbol{r})&=E\psi(\boldsymbol{r})
+\end{align}
+
+In Dirac theory, the Hamiltonian is:
+\begin{align}
+    \hat{H} = \hat{\alpha}_0 m c^2 + \sum_{j=1}^{3} \hat{\alpha}_j \hat{p}_j c, \quad \text{where } \hat{p}_j \equiv -i \hbar \partial_j, \label{Dirac}
+\end{align}
+where in the Dirac represenation,
+\begin{align}
+    \hat{\alpha}_0 &= 
+    \begin{bmatrix}
+    \hat{I} & \hat{0} \\
+    \hat{0} & -\hat{I}
+    \end{bmatrix}, \quad
+    \hat{\alpha}_1 = 
+    \begin{bmatrix}
+    \hat{0} & \hat{\sigma}_1 \\
+    \hat{\sigma}_1 & \hat{0}
+    \end{bmatrix}, \\
+    \hat{\alpha}_2 &= 
+    \begin{bmatrix}
+    \hat{0} & \hat{\sigma}_2 \\
+    \hat{\sigma}_2 & \hat{0}
+    \end{bmatrix}, \quad
+    \hat{\alpha}_3 = 
+    \begin{bmatrix}
+    \hat{0} & \hat{\sigma}_3 \\
+    \hat{\sigma}_3 & \hat{0}
+    \end{bmatrix},
+\end{align}
+and we expect it still obey equation \eqref{Schrödinger} with Hamiltonian has the form of \eqref{Dirac}. 
+
+The gamma matrix $\gamma^\mu$ in the dirac represenation is defined as: $\gamma^0=\hat{\alpha}_0,\ \gamma^i=\gamma^0\hat{\alpha}_i$. 
+
+The Dirac equation can be formulated in the following way:
+\begin{align}
+    (i\gamma^\mu\partial_\mu-m)\psi(\boldsymbol{r},t)=0\\
+    \gamma^\mu p_\mu-m=0
+\end{align}
+The plane wave solution of Dirac equation can be naturally derived as (for positive energy as an example):
+\begin{align}
+    % \psi^s(\mathbf{r}) = \int \frac{d^3 p}{(2\pi)^3} \, u^s(p) \, e^{i p\cdot r},\\
+    \psi^s(\boldsymbol{r},t)=u^s(p)\exp(-ip^\mu x_\mu)
+\end{align}
+with a new degree of freedom spin s.
+% For a particle propagating along z axis($\boldsymbol{p}=p\hat{\boldsymbol{z}}$), the 
+
+\section{Perturbation Theory in Scattering of Dirac Electrons}
+In the relativistic quantum mechanics level, we regard $\psi(\boldsymbol{r})$ as a single particle wave function, and a scattering process can be studied under this formalism. In this chapter we will show how to use the (old-fashioned) perturbation theory and Born approximation in the scattering of Dirac electrons, and give an example of numerical calculation.
+
+Given a Hamiltonian, the Lippmann–Schwinger equation is given as following:
+\begin{align}
+    |\psi\rangle = |\phi\rangle + \frac{1}{E - H_0} V |\psi\rangle,
+\end{align}
+The L-S equation is equivalent to the Schrödinger equation, and we have obtained this in class via the Green function approach:
+\begin{align}
+    |\psi_s\rangle &= G_0 V |\psi\rangle,\\
+    |\psi\rangle &= |\psi_i\rangle +G_0 V |\psi\rangle
+\end{align}
+where 
+\begin{align}
+    |\psi\rangle&=|\psi_i\rangle+|\psi_s\rangle,\\
+    G_0&=\frac{1}{E-H_0}.
+\end{align}
+Given a Dirac Hamiltonian (as the $H_0$ in the above formula), the Green function (Lippmann–Schwinger kernel) can be expended in the momentum eigenstates:
+\begin{align}
+    G_0(E) = \sum_s \left[ 
+    \frac{ |k,s,+\rangle \langle k,s,+| }{E - E_k \pm i\epsilon}
+    + \frac{ |k,s,-\rangle \langle k,s,-| }{E + E_k \pm i\epsilon}
+    \right]
+\end{align}
+Here $|k,s,+\rangle$ and $|k,s,-\rangle$ indicate the momentum eigenstates of the positive and negative energy. 
+
+By iteration, one can finally calculate the wave function as following: 
+
+\begin{align}
+    \psi(\mathbf{r}) &= \psi_i(\mathbf{r}) 
+    + \int d^d r' \, \langle \mathbf{r} | \hat{G}_0 | \mathbf{r}' \rangle \, V(\mathbf{r}') \, \psi_i(\mathbf{r}')
+    + \int d^d r' \, d^d r'' \, \langle \mathbf{r} | \hat{G}_0 | \mathbf{r}' \rangle \, V(\mathbf{r}') \, \langle \mathbf{r}' | \hat{G}_0 | \mathbf{r}'' \rangle \, V(\mathbf{r}'') \, \psi_i(\mathbf{r}'')
+    + \cdots\\
+    \text{and},\nonumber\\
+    \psi_s(\mathbf{r}) &= \int d^3 r' \, \langle \mathbf{r} | \hat{G}_0 | \mathbf{r}' \rangle \, V(\mathbf{r}') \, \langle \mathbf{r}' | (\hat{I} + \hat{G} \hat{V}) | \psi_i \rangle.
+\end{align}
+If we want to do these calculations based on the perturbation theory, the keypoint is to get the matrix elements $\langle \boldsymbol{r}| G_0 |\boldsymbol{r}'\rangle$ of $G_0$: 
+\begin{align}
+    \langle \boldsymbol{r}| G_0 |\boldsymbol{r}'\rangle&=\langle\boldsymbol{r}|G_0 \sum_s\int\frac{d^3k}{(2\pi)^3 2E_k}\left(|k,s,+\rangle\langle k,s,+|+|k,s,-\rangle\langle k,s,-|\right) |\boldsymbol{r}'\rangle\nonumber\\
+    %%%
+    &=\langle\boldsymbol{r}| \sum_s\int  \frac{d^3k}{(2\pi)^32E_k} \left(\frac{|k,s,+\rangle\langle k,s,+|}{E - E_k \pm i\epsilon}+ \frac{|k,s,-\rangle\langle k,s,-|}{E + E_k \pm i\epsilon}\right) |\boldsymbol{r}'\rangle\nonumber\\
+    &=\sum_s\int  \frac{d^3k}{(2\pi)^32E_k}\left(\frac{\langle\boldsymbol{r}|k,s,+\rangle\langle k,s,+|\boldsymbol{r}'\rangle}{E - E_k \pm i\epsilon}+ \frac{\langle\boldsymbol{r}|k,s,-\rangle\langle k,s,-|\boldsymbol{r}'\rangle}{E + E_k \pm i\epsilon}\right)\nonumber\\
+    &=\sum_s\int  \frac{d^3k}{(2\pi)^32E_k}\left(\frac{e^{i \mathbf{k} \cdot (\mathbf{r}-\mathbf{r}')}u^s_{\mathbf{k}} u^{s\dagger}_{\mathbf{k}}}{E - E_k \pm i\epsilon}+ \frac{e^{-i \mathbf{k} \cdot (\mathbf{r}-\mathbf{r}')}v^s_{\mathbf{-k}} v^{s\dagger}_{\mathbf{-k}}}{E + E_k \pm i\epsilon}\right)\nonumber\\
+    &=\int  \frac{d^3k}{(2\pi)^32E_k}\left(\frac{e^{i \mathbf{k} \cdot (\mathbf{r}-\mathbf{r}')}(\slashed{k} + m)\gamma^0}{E - E_k \pm i\epsilon}+ \frac{e^{-i \mathbf{k} \cdot (\mathbf{r}-\mathbf{r}')}(\slashed{k} - m)\gamma^0}{E + E_k \pm i\epsilon}\right)\label{G0expend}
+\end{align}
+Here we use the single-particle wavefunctions as following. The base vectors are matrix themselves, and we choose the normalization
+\begin{align}
+    \langle \mathbf{r} | \mathbf{k}, s, +\rangle &= 
+    e^{i \mathbf{k} \cdot \mathbf{r}}\, u^s_{\mathbf{k}},\qquad \langle \mathbf{r} | \mathbf{k}, s, - \rangle = 
+    e^{-i \mathbf{k} \cdot \mathbf{r}} \, v^s_{-\mathbf{k}}
+\end{align}
+% that satisfy our convention:
+% \begin{align}
+%     |\psi_i\rangle=\frac{1}{\sqrt{2E_k}}a_k^{s\dagger}| 0\rangle
+% \end{align}
+
+We also use the normalization and summing relation of dirac spinors\cite{schwartz2013quantum,Peskin:1995ev}:
+\begin{align}
+    u^{r \dagger}(k) \, u^s(k) &= 2 E_{\mathbf{k}} \, \delta^{rs}.\\
+    \sum_s u^s_{\mathbf{k}} {u^s_{\mathbf{k}}}^\dagger &= (\slashed{k} + m)\gamma^0 , \quad
+    \sum_s v^s_{-\mathbf{k}} {v^s_{-\mathbf{k}}}^\dagger = (\slashed{k} - m)\gamma^0
+\end{align}
+where $\slashed{k}=\gamma^\mu k_\mu$. To get the result, we first let $\mathbf{r}-\mathbf{r}'=\mathbf{R}$ along the z axis, and the integral(for example, the positive energy part) becomes:
+\begin{align}
+    &\int  \frac{dkd\theta d\phi}{(2\pi)^32E_k}k^2\sin\theta\left(\frac{e^{i kR\cos\theta}(\gamma^0 E_k +k \left( \gamma^1 \sin\theta \cos\phi + \gamma^2 \sin\theta \sin\phi + \gamma^3 \cos\theta \right)+ m)\gamma^0}{E - E_k \pm i\epsilon}\right)\nonumber\\
+    =&\int_0^\infty  \frac{dk}{(2\pi)^22E_k}\int_{0}^{\pi}d\theta\ k^2\sin\theta\left(\frac{e^{i kR\cos\theta}(\gamma^0 E_k +k  \gamma^3 \cos\theta+ m)\gamma^0}{E - E_k \pm i\epsilon}\right)\label{inter1}
+\end{align}
+Here we first integral over $\phi$. Notice that the first two terms with $\cos\phi,\sin\phi$ will be zero. Then considering the integration of $\theta$, notice that:
+\begin{align}
+    &\int_{-1}^{1}d\cos\theta e^{ikR\cos\theta}=\frac{e^{ikR}-e^{-ikR}}{ikR}\\
+    %%%%%%%
+    &\int_{-1}^{1}d\cos\theta e^{ikR\cos\theta}\cos\theta=\frac{\partial}{iR\partial k}\int_{-1}^{1}d\cos\theta e^{ikR\cos\theta}=\frac{\partial}{iR\partial k}\frac{e^{ikR}-e^{-ikR}}{ikR}\nonumber\\
+    &=\frac{e^{i k R} (1-i k R)-e^{-i k R} (1+i k R)}{k^3 R^2}
+\end{align}
+So \eqref{inter1} can be reduce to:
+\begin{align}
+    &\int_0^\infty  \frac{dk}{(2\pi)^22E_k}\ k^2\left(\frac{(\gamma^0 E_k + m)\gamma^0}{E - E_k \pm i\epsilon}\frac{e^{ikR}-e^{-ikR}}{ikR}-\frac{k  \gamma^3 \gamma^0}{E - E_k \pm i\epsilon}\frac{e^{i k R} (1-i k R)-e^{-i k R} (1+i k R)}{k^2 R^2}\right)\nonumber\\
+    =&\int_{-\infty}^\infty  \frac{dk'}{(2\pi)^22E_k}\left(\frac{(\gamma^0 E_k + m)\gamma^0}{E - E_k \pm i\epsilon}\frac{k'e^{ik'R}}{i R}-\frac{  \gamma^3 \gamma^0 k'}{E - E_k \pm i\epsilon}\frac{e^{i k' R} (1-i k' R)}{R^2}\right)
+\end{align}
+using the relation: $E=\sqrt{k^2+m^2},\ E_k=\sqrt{k'^2+m^2}$, there will be poles at k'=k. The denominator can be express as follow:
+\begin{align}
+    \frac{1}{\sqrt{k^2+m^2}-\sqrt{k'^2+m^2}}=\frac{\sqrt{k^2+m^2}+\sqrt{k'^2+m^2}}{k^2-k'^2}
+\end{align}
+By applying the similar $\epsilon$ trick, this can be avoided, and the result can be obtained by residue theorem:
+\begin{align}
+    \langle \boldsymbol{r}| G_0 |\boldsymbol{r}'\rangle=&\frac{i}{(2\pi)}\left(\frac{(\gamma^0 E + m)\gamma^0 k e^{ikR}}{2ik R}-\frac{\gamma^3 \gamma^0 k e^{ikR}(1-ikR)}{2k R^2}\right)\nonumber\\
+    =&\left(\frac{( E + m\gamma^0) e^{ikR}}{4\pi R}-\frac{\gamma^3 \gamma^0 e^{ikR}(i+kR)}{4\pi R^2}\right)
+\end{align}
+
+We can do the similar operation for the negative part, the only difference is that when $E>0$, there is no poles here, so the residue is zero, and this term does not contribute. We can conclude that the first term in \eqref{G0expend} only contributes when we have positive energy, while the second term only conreibute when the energy is negative.
+
+Now consider the scattering amplitude. We have the wave function:
+\begin{align}
+    \psi_s(\mathbf{r}) &= \int d^3 r' \, \langle \mathbf{r} | \hat{G}_0 | \mathbf{r}' \rangle \, V(\mathbf{r}') \, \langle \mathbf{r}' | (\hat{I} + \hat{G} \hat{V}) | \psi_i \rangle.
+\end{align}
+when $r\rightarrow\infty$, $\langle \boldsymbol{r}| G_0 |\boldsymbol{r}'\rangle\approx\frac{(E+m\gamma^0-\gamma^3 \gamma^0 k)e^{ik(r-\hat{\mathbf{r}}\cdot\mathbf{r}')}}{4\pi r}$. The scattered wave function is:
+\begin{align}
+    \psi_s(\mathbf{r}) &\xrightarrow{r \to \infty}  \int d^3 r' \, \frac{(E+m\gamma^0-\gamma^3 \gamma^0 k)e^{ik(r-\hat{\mathbf{r}}\cdot\mathbf{r}')}}{4\pi r} \, V(\mathbf{r}') \langle \mathbf{r}' | (\hat{I} + \hat{G} \hat{V}) | \psi_i \rangle
+\end{align}
+So the scattering amplitude is:
+\begin{align}
+    f&= \int d^3 r' \, \frac{(E+m\gamma^0-\gamma^3 \gamma^0 k)e^{-ik\hat{\mathbf{r}}\cdot\mathbf{r}'}}{4\pi} \, V(\mathbf{r}') \,  \langle \mathbf{r}' | (\hat{I} + \hat{G} \hat{V}) | \psi_i \rangle\nonumber\\
+    &= \int d^3 r' \, \frac{(E+m\gamma^0-\gamma^3 \gamma^0 k)}{4\pi\cdot 2E} \,  \langle \mathbf{r}'| u_k^{s\dagger} u_k^s e^{-ik\hat{\mathbf{r}}\cdot\mathbf{r}'}(\hat{V} +\hat{V} \hat{G} \hat{V}) | \psi_i \rangle\nonumber\\
+    &= \frac{(E+m\gamma^0-\gamma^3 \gamma^0 k)}{4\pi\cdot 2E} \,  \langle \mathbf{k_f},s| u_k^s (\hat{V} +\hat{V} \hat{G} \hat{V}) | \mathbf{k}_f,s \rangle
+\end{align}
+One can consider the first two order $V+VG_0V$:
+\begin{align}
+    f&=f_1+f_2\\
+    f_1&=\int d^3 r' \, \frac{(E+m\gamma^0-\gamma^3 \gamma^0 k)e^{-ik\hat{\mathbf{r}}\cdot\mathbf{r}'}}{4\pi} \, V(\mathbf{r}') \,  \langle \mathbf{r}' | k_i,s \rangle\nonumber\\
+    &=\int d^3 r' \, \frac{(E+m\gamma^0-\gamma^3 \gamma^0 k)e^{i(k_i-k_f)\cdot\mathbf{r}'}}{4\pi} \, V(\mathbf{r}') \,  u_{k_i}^s\\
+    f_2&=\int d^3 r' d^3r''\, \frac{(E+m\gamma^0-\gamma^3 \gamma^0 k)e^{-ik\hat{\mathbf{r}}\cdot\mathbf{r}'}}{4\pi} \, V(\mathbf{r}') \,  \langle \mathbf{r}' |  \hat{G}_0 \hat{V} | \psi_i \rangle\nonumber\\
+    &=\int d^3 r' d^3r''\, \frac{(E+m\gamma^0-\gamma^3 \gamma^0 k)e^{-ik_f\cdot\mathbf{r}'}}{4\pi} \, V(\mathbf{r}') \,  \langle \mathbf{r}' |  \hat{G}_0  |\mathbf{r}''\rangle  V(r'') \langle \mathbf{r}'' | k_i, s \rangle\nonumber\\
+    &=\int d^3 r' d^3r''\, \frac{(E+m\gamma^0-\gamma^3 \gamma^0 k)e^{i(k_i\cdot\mathbf{r}''-k_f\cdot\mathbf{r}')}}{4\pi} \, V(\mathbf{r}')  \,  \frac{( E + m\gamma^0-\gamma^3 \gamma^0 k-i\gamma^3 \gamma^0/R) e^{ikR}}{4\pi R}V(\mathbf{r}'')  u_{k_i}^s
+\end{align}
+We can define the following quantity as the probability of the scattering which maintain the Lorentz invariance:
+\begin{align}
+    \abs{f}^2=\bar{f}f=f^{\dagger}\gamma^0f
+\end{align}
+
+
+\section{Numerical Result}
+\subsection*{Uniform spherical potential}
+In this section, I try the numerical calculation of the scattering amplitude for the first and second born approximation based on the calculation in the above section. For easier calculation, here we shift to weyl represenation, with a slightly different $\gamma^0$. We choose the uniform spherical potential, and always let the electron incident along z axis:
+\begin{align}
+    V(\vec{r}) =
+\begin{cases}
+- U & \text{for } |\vec{r}| < R \\
+0 & \text{for } |\vec{r}| \ge R
+\end{cases}
+\end{align}
+
+First we check the energy spectrum with fixed outgoing angle. We choose U=-0.3 and R=1. We change the emergent beams along x-axis or z-axis, and Generally, the result is shown in Fig.\ref{Energy} lives up to expectations.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.49\textwidth]{spin 1—2 emergent along x-axis}  % 替换为你的图片文件名（不要加路径）
+    \includegraphics[width=0.49\textwidth]{spin -1—2 emergent along x-axis} 
+    \includegraphics[width=0.49\textwidth]{spin 1—2 emergent along z-axis}
+    \includegraphics[width=0.49\textwidth]{spin -1—2 emergent along z-axis}
+    \caption{Energy spectrum}
+    \label{Energy}
+  \end{figure}
+
+Then, we calculate the amplitude with different emergent angles. With larger $\theta$(backwards), the amplitude decrease, which is accordance with expectations. See Fig.\ref{theta}.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.49\textwidth]{spin 1—2 with different angles}  % 替换为你的图片文件名（不要加路径）
+    \includegraphics[width=0.49\textwidth]{spin -1—2 with different angles} 
+    \caption{Scattering with theta}
+    \label{theta}
+  \end{figure}
+	
+\subsection*{Mimic Stern-Gerlach experiment}
+To further explore the difference from the spin degree of freedom, we apply the magnetic field along the x axis, while keep electron moving along z axis. The potential is given by\cite{fonseca2024quantum}, with an expension to the Dirac electrons:
+\begin{align}
+    \hat{V}(r)&=-U\cdot x\cdot \Sigma_x\\
+    \Sigma_x&=\mathbf{1}\otimes \sigma_x
+\end{align}
+Then, we plot the amplitute with different $\theta$ and $\phi$. For fixed $\phi$=0, one can observe a deflection angle of about 50$^\circ$. When we fix the angle at about this number, and change different $\phi$, the amplitude reach the maxium at both $\phi=0$ and $\phi=\pi$, which means that the electrons incident along z axis will be seperate into two beams along the x axis, and clearly reproduce the result of the Stern-Gerlach experiment. Notice that here we choose the spin along z-axis, so on x axis, there will be two components exist simultaneously. 
+
+Finally, we can compare with the result of the spherical potential with no spin interaction in the last figure in Fig.\ref{thetaphi}, and there is no splitting at all, which confirm our result is really due to the spin interaction.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.49\textwidth]{SG_ spin_z 1—2 with different theta} 
+    \includegraphics[width=0.49\textwidth]{SG_ spin_z 1—2 with different phi}  % 替换为你的图片文件名（不要加路径）
+    \includegraphics[width=0.49\textwidth]{Spherical_ spin_z 1—2 with different phi} 
+    \caption{scattering with different $\theta$ and $\phi$}
+    \label{thetaphi}
+  \end{figure}
+
+%   \begin{figure}[t]
+%     \centering
+%     \includegraphics[width=0.49\textwidth]{SG_ spin_z pm1—2 with different phi}  % 替换为你的图片文件名（不要加路径）
+%     \includegraphics[width=0.49\textwidth]{Spherical_ spin_z 1—2 with different phi} 
+%     \caption{Seperate different spin components and comparison}
+%     \label{seperate}
+%   \end{figure}
+
+\section{Summary and Outlook}
+In this report, I derive the theories of the scattering of Dirac electrons in the relativistic quantum mechanics, and applying different potentials for simulation. By adding the potential related to spin, we show the deflection of electrons. which is a phenomenon that will not be included in non-relativistic quantum mechanics. However, as we are choosing the Weyl represenation in the numerical simulation, the spinor of injecting state is not exactly the eigenstates of the spin operators, which makes the seperation of spin 1/2 and spin -1/2 difficult. In the future it will be interesting to further refine this problem with different represenations.
+
+The old fashioned perturbation theory is also useful in quantum field theory when considering the scattering of particles, since it will provide clear physical processes where the intermediate particle is on-shell. However due to the limitation of space, we will not discuss it in this report.
+
+
+
+\bibliography{scattering}
+\bibliographystyle{unsrt}
+\addcontentsline{toc}{section}{References} 
+ 
+
+
+% \clearpage                 % 换页
+\section*{Appendix}        % 不编号的章节
+\addcontentsline{toc}{section}{Appendix}  % 如果你有目录的话，附录也加入目录
+\includepdf[pages=-]{Scattering of Dirac Electron_Zhengjiang.pdf}
+
+\end{document}
+
