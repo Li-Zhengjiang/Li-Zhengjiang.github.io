@@ -1,14 +1,13 @@
 ---
-title: "Paper Title Number 3"
+title: "Entanglement islands and cutoff branes from path-integral optimization"
 collection: publications
 category: manuscripts
-permalink: /publication/2015-10-01-paper-title-number-3
-excerpt: 'This paper is about the number 3. The number 4 is left for future work.'
-date: 2015-10-01
-venue: 'Journal 1'
-slidesurl: 'http://academicpages.github.io/files/slides3.pdf'
-paperurl: 'http://academicpages.github.io/files/paper3.pdf'
-citation: 'Your Name, You. (2015). &quot;Paper Title Number 3.&quot; <i>Journal 1</i>. 1(3).'
+permalink: /publication/entanglement-islands-and-cutoff-branes-from-path-integral-optimization
+excerpt: 'Connects path-integral optimization with entanglement islands and cutoff branes in holographic CFTs.'
+date: 2024-07-09
+venue: 'Journal of High Energy Physics 2024, 69'
+link: 'https://doi.org/10.1007/JHEP07(2024)069'
+paperurl: 'https://doi.org/10.1007/JHEP07(2024)069'
+citation: 'Chandra, A., Li, Z., &amp; Wen, Q. (2024). &quot;Entanglement islands and cutoff branes from path-integral optimization.&quot; <i>Journal of High Energy Physics</i> 2024, 69.'
 ---
-
-The contents above will be part of a list of publications, if the user clicks the link for the publication than the contents of section will be rendered as a full page, allowing you to provide more information about the paper for the reader. When publications are displayed as a single page, the contents of the above "citation" field will automatically be included below this section in a smaller font.
+This paper links path-integral optimization to entanglement islands and cutoff branes, with applications to holographic entanglement entropy and mixed-state correlations.

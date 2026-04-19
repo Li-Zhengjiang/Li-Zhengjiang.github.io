@@ -1,14 +1,13 @@
 ---
-title: "Paper Title Number 2"
+title: "Unambiguous detection of high energy vortex states via the superkick effect"
 collection: publications
 category: manuscripts
-permalink: /publication/2010-10-01-paper-title-number-2
-excerpt: 'This paper is about the number 2. The number 3 is left for future work.'
-date: 2010-10-01
-venue: 'Journal 1'
-slidesurl: 'http://academicpages.github.io/files/slides2.pdf'
-paperurl: 'http://academicpages.github.io/files/paper2.pdf'
-citation: 'Your Name, You. (2010). &quot;Paper Title Number 2.&quot; <i>Journal 1</i>. 1(2).'
+permalink: /publication/unambiguous-detection-of-high-energy-vortex-states-via-the-superkick-effect
+excerpt: 'Proposes a superkick-based method to unambiguously detect high-energy vortex states.'
+date: 2024-12-23
+venue: 'Physical Review Letters 133, 265001'
+link: 'https://doi.org/10.1103/PhysRevLett.133.265001'
+paperurl: 'https://doi.org/10.1103/PhysRevLett.133.265001'
+citation: 'Li, Z., Liu, S., Liu, B., Ji, L., &amp; Ivanov, I. P. (2024). &quot;Unambiguous detection of high energy vortex states via the superkick effect.&quot; <i>Physical Review Letters</i> 133, 265001.'
 ---
-
-The contents above will be part of a list of publications, if the user clicks the link for the publication than the contents of section will be rendered as a full page, allowing you to provide more information about the paper for the reader. When publications are displayed as a single page, the contents of the above "citation" field will automatically be included below this section in a smaller font.
+This work proposes a practical way to identify high-energy vortex states through the superkick effect, providing a clear experimental signature for future studies.
