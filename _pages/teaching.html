@@ -8,5 +8,8 @@ author_profile: true
 {% include base_path %}
 
 {% for post in site.teaching reversed %}
+  {% unless post.show_on_teaching == true %}
+    {% continue %}
+  {% endunless %}
   {% include archive-single.html %}
 {% endfor %}
