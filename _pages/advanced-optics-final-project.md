@@ -1,13 +1,13 @@
 ---
 layout: single
-title: "Advanced Optics Final Project"
+title: "Vortex States"
 permalink: /notes/advanced-optics-final-project/
 author_profile: true
 ---
 
-This page collects materials from my final project for Advanced Optics.
+This page collects materials from my project for the Advanced Optics course.
 
-The report focuses on topics related to vortex beams and related optical effects, and the supplementary figures provide a visual summary of several key ideas and results.
+The report focuses on vortex-state-related optical effects, and the supplementary figures provide a visual summary of several key ideas and results.
 
 - Main report (PDF): [Open report](/files/notes/advanced-optics-final-project/vortex-report.pdf)
 - Figure: [Bessel kick](/files/notes/advanced-optics-final-project/besselkick.png)

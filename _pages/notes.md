@@ -11,14 +11,14 @@ The notes here are meant to serve as a small archive of coursework and self-stud
 
 ## Selected Notes
 
-### [GQM Final Project: Scattering of Dirac Electron](/notes/gqm-final-project/)
+### [Scattering of Dirac Electron](/notes/gqm-final-project/)
 
-A course project report for GQM, including the main report and several supplementary figures.
+A project report for the GQM course, including the main report and several supplementary figures.
 
-### [Advanced Optics Final Project](/notes/advanced-optics-final-project/)
+### [Vortex States](/notes/advanced-optics-final-project/)
 
-A final project report for Advanced Optics, together with selected figures from the project.
+A project report for the Advanced Optics course, together with selected figures from the project.
 
-### [Concepts in Statistical Mechanics](/notes/concepts-in-statistical-mechanics/)
+### [Duality](/notes/duality/)
 
-A collection of lecture notes, homework sets, solutions, and related course materials.
+A course note from Concepts in Statistical Mechanics, with the corresponding PDF material.
