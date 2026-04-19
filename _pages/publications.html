@@ -6,8 +6,10 @@ author_profile: true
 ---
 
 {% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
+  <p class="wordwrap">This page lists my research publications. An updated list is also available on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</p>
 {% endif %}
+
+<p>My recent work spans high-energy theory, quantum information, and AMO-related topics.</p>
 
 {% include base_path %}
 
@@ -31,6 +33,5 @@ author_profile: true
     {% include archive-single.html %}
   {% endfor %}
 {% endif %}
-
 
 
